@@ -1,0 +1,30 @@
+version: "3"
+services:
+  #db:
+  #  platform: linux/arm64/v8
+  #  image: mongo:4.2
+  #  container_name: personal-website-mongodb
+  #  restart: always
+  #  ports:
+  #    - "2717:27017"
+  #  volumes:
+  #    - db-data:/data/db
+  #  environment:
+  #    - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+  #    - MONGO_INITDB_ROOT_PASSWORD=${DB_PASS}
+  app:
+    platform: linux/arm64/v8
+    image: quay.io/robocup-logistics/mongo-backend:latest
+    container_name: mongo-backend-app
+    #depends_on:
+    #  - db
+    restart: always
+    environment:
+      - DB_URL=${DB_URL}
+    #  - DB_USER=${DB_USER}
+    #  - DB_PASS=${DB_PASS}
+    ports:
+      - "8083:8083"
+#volumes:
+#  db-data:
+#    driver: local

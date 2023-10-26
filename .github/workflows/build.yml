@@ -1,0 +1,1 @@
+# CI workflow to automatically build docker image and push it to github container registry

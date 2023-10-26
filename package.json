@@ -1,0 +1,21 @@
+{
+  "name": "mongodb-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "A simple Node.js server to serve the new frontend and connect to the MongoDB backend",
+  "main": "app.js",
+  "scripts": {
+    "dev": "PORT=8083 nodemon app.js",
+    "start": "PORT=8083 node app.js"
+  },
+  "author": "Christian Koch",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^6.2.0"
+  }
+}
