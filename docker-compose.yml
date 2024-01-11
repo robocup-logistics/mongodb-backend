@@ -24,7 +24,7 @@ services:
     #  - DB_USER=${DB_USER}
     #  - DB_PASS=${DB_PASS}
     ports:
-      - "8083:8083"
+      - "8085:8085"
 #volumes:
 #  db-data:
 #    driver: local

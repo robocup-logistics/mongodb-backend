@@ -3,15 +3,38 @@ import { getConnection } from "../services/connectionManager.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res, _) => {
+router.get("/", async (req, res, _next) => {
   const db = await getConnection();
   const gameReports = db.collection("game_report");
+  const MIN_VERSION = parseFloat(req.query["min_version"]);
+  const MAX_VERSION = parseFloat(req.query["max_version"]);
   let reportsList;
   try {
     reportsList = await gameReports
-      .find({})
-      .project({ "report-name": 1, "start-time": 1, "total-points": 1 })
-      .sort({ "start-time": -1 })
+      .find({
+        $or: [
+          {
+            report_version: {
+              $gte: MIN_VERSION,
+              $lte: MAX_VERSION,
+            },
+          },
+          {
+            "report-version": {
+              $gte: MIN_VERSION,
+              $lte: MAX_VERSION,
+            },
+          },
+        ],
+      })
+      .project({
+        report_name: 1,
+        start_time: 1,
+        end_time: 1,
+        points: 1,
+        teams: 1,
+      })
+      .sort({ start_time: -1 })
       .toArray();
   } catch (err) {
     console.error(err);
