@@ -1,20 +1,19 @@
 # mongodb-backend
 
-A MongoDB backend to retrieve game reports of the RoboCup Logitics League. Used
-by the official RoboCup Logistics League web frontend.
+A MongoDB backend to retrieve RoboCup Logitics Leagu game reports. Used by the
+official RoboCup Logistics League web frontend.
 
 ## Requirements
 
-- `Node.js` [Download](https://nodejs.org/en/download/current) and install
-  Nde.js. For most Linux versions, preferably install Node.js via your package
-  manager instead, for Fedora this is
+- [Download](https://nodejs.org/en/download/current) and install `Node.js`. For
+  most Linux versions, preferably install Node.js via your package manager
+  instead, see this command for Fedora:
 
   ```
   dnf install nodejs
   ```
 
-- `yarn`
-  Install `yarn` with npm (which should come preinstalled with Node.js)
+- Install `yarn` with npm (which should come preinstalled with Node.js)
 
   ```
   npm install --g yarn
