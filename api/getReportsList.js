@@ -8,9 +8,9 @@ router.get("/", async (req, res, _next) => {
   const gameReports = db.collection("game_report");
   const MIN_VERSION = parseFloat(req.query["min_version"]);
   const MAX_VERSION = parseFloat(req.query["max_version"]);
-  let reportsList;
+  let reports, incompatibleCount;
   try {
-    reportsList = await gameReports
+    reports = await gameReports
       .find({
         $or: [
           {
@@ -36,13 +36,40 @@ router.get("/", async (req, res, _next) => {
       })
       .sort({ start_time: -1 })
       .toArray();
+    incompatibleCount = await gameReports.countDocuments({
+      $or: [
+        {
+          report_version: {
+            $lt: MIN_VERSION,
+          },
+        },
+        {
+          report_version: {
+            $gt: MAX_VERSION,
+          },
+        },
+        {
+          "report-version": {
+            $lt: MIN_VERSION,
+          },
+        },
+        {
+          "report-version": {
+            $gt: MAX_VERSION,
+          },
+        },
+      ],
+    });
   } catch (err) {
     console.error(err);
   }
 
-  if (reportsList) {
-    if (reportsList.length) {
-      res.status(200).json(reportsList);
+  if (reports && incompatibleCount) {
+    if (reports.length) {
+      res.status(200).json({
+        reports,
+        incompatibleCount,
+      });
     } else {
       res.status(204).send();
     }

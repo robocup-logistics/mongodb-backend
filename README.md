@@ -1,6 +1,6 @@
 # mongodb-backend
 
-A MongoDB backend to retrieve RoboCup Logitics Leagu game reports. Used by the
+A MongoDB backend to retrieve RoboCup Logistics League game reports. Used by the
 official RoboCup Logistics League web frontend.
 
 ## Requirements
