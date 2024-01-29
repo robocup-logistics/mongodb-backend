@@ -64,7 +64,7 @@ router.get("/", async (req, res, _next) => {
     console.error(err);
   }
 
-  if (reports && incompatibleCount) {
+  if (reports && incompatibleCount>=0) {
     if (reports.length) {
       res.status(200).json({
         reports,
