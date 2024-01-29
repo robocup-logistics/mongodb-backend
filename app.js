@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 import getReportsList from "./api/getReportsList.js";
 import getReportById from "./api/getReportById.js";
@@ -7,6 +8,7 @@ import getReportById from "./api/getReportById.js";
 const app = express();
 
 // allow access from other urls
+app.use(cors());
 app.use((_, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -23,7 +25,6 @@ app.use((_, res, next) => {
 // api routes
 app.use("/api/getReportsList", getReportsList);
 app.use("/api/getReportById", getReportById);
-
 // listen
 app.listen(process.env.PORT, () => {
   console.log("Server listening on port " + process.env.PORT);
